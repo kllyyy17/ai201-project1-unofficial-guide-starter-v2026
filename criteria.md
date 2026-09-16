@@ -57,6 +57,9 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
+For at least 4 of my 5 test questions, the retrieved answer-containing chunk 
+contains enough context to answer the question without needing another chunk.
+
 <!-- YOU WRITE THIS ONE.
 
      How would you know if your chunks were the right size? Name something
@@ -73,11 +76,18 @@ in at least 4 of 5 tries.
 
 **Why this target:**
 
+I chose 4 of 5 because the campus_life corpus contains mostly short posts 
+where the useful information is usually contained in one sentence or short passage. 
+This target checks that my chunks are large enough to preserve the context needed 
+to answer questions without combining multiple chunks.
 
 
 ---
 
 ## 5. Your choice
+
+For at least 4 of my 5 test questions, the source document named in the answer 
+contains the information used to answer the question.
 
 <!-- YOU WRITE THIS ONE TOO.
 
@@ -91,6 +101,9 @@ in at least 4 of 5 tries.
 
 **Why this target:**
 
+I chose 4 of 5 because naming a source is only useful if the source actually 
+supports the answer. This target checks that the system's citations are accurate 
+rather than simply including a source name in every response.
 
 
 ---
