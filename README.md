@@ -120,14 +120,27 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question:** "What are the peak wait times at Pellew Dining Hall?"
 
 **Answer:**
 
 ```
+  (best distance 0.198, cutoff 0.6)
+
+The peak wait times at Pellew Dining Hall are 12 to 18 minutes (from `dining_pellew_dining_hall.txt` and `dining_pellew_dining_hall_followup.txt`).
+
+Sources retrieved: dining_halden_hall.txt, dining_halden_hall_followup.txt, dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, dining_the_ridgeway_cafe_followup.txt
+
+1 model calls this session, 753 tokens (703 in, 50 out)
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff:** `0.6`
+
+The five in-corpus questions had best distances from `0.137` to `0.278`, 
+while the five out-of-scope questions had distances from `0.825` to `0.934`. 
+There was a clear gap between the two groups, so I kept the `0.6` cutoff 
+because it sits between the highest in-corpus distance and the lowest 
+out-of-scope distance.
 
 <!-- The number you set in config.py, and how you got there.
 
@@ -140,7 +153,16 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| How many credit hours are required for graduation? | Yes | 0.268 |
+| What is the latest week a student can declare a course pass/fail? | Yes | 0.228 |
+| How many hours per week should students expect to spend outside class for CS 210? | Yes | 0.278 |
+| What are the peak wait times at Pellew Dining Hall? | Yes | 0.198 |
+| How much does laundry cost to wash and dry at Fenwick Court? | Yes | 0.137 |
+| What is the capital of Mongolia? | No | 0.825 |
+| How do I change the oil in a diesel engine? | No | 0.934 |
+| Who won the 1994 World Cup? | No | 0.886 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.844 |
+| How do I write a for loop in Rust? | No | 0.896 |
 
 ## How I Used AI
 
