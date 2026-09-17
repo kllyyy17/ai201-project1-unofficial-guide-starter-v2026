@@ -41,13 +41,13 @@ of asking the model to guess.
 
 ## Chunking Strategy
 
-**Chunk size:** 600 characters
-**Overlap:** 0 characters
+**Chunk size:** `600` characters 
+**Overlap:** `0` characters
 
-I chose a 600-character limit because the campus_life corpus consists 
+I chose a `600-character` limit because the campus_life corpus consists 
 mostly of short posts. In the starter baseline, the documents produced 
-88 chunks from 88 documents, with an average length of 317 characters 
-and a longest chunk of 549 characters, so splitting these posts into 
+`88` chunks from `88` documents, with an average length of `317` characters 
+and a longest chunk of `549` characters, so splitting these posts into 
 smaller fixed-size pieces would risk separating useful information 
 that already fits together. I use paragraph boundaries for longer 
 posts so that sentences and related thoughts stay together.
@@ -190,7 +190,7 @@ out-of-scope distance.
 I used ChatGPT to help me understand and implement parts of the RAG pipeline 
 while keeping the project simple enough for the `campus_life` corpus.
 
-**1. Chunking strategy:**  
+**1. Chunking strategy:**
 I asked ChatGPT to help me decide how to chunk the `campus_life` documents 
 after inspecting the starter chunker. It suggested using a 600-character 
 target and splitting longer documents at paragraph boundaries with no overlap. 
