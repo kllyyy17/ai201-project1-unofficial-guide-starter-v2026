@@ -25,7 +25,9 @@ contains the answer.
 **Why this target:**
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
-
+I chose 4 of 5 because retrieval is the foundation of this RAG pipeline, 
+and a relevant answer-containing chunk needs to be present before the model 
+can produce a grounded answer.
 ---
 
 ## 2. Every answer names a source
@@ -35,6 +37,9 @@ Every answer the system produces names at least one source document.
 **Why this target:**
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
+I chose every answer because source attribution is important for 
+checking where an answer came from and making the generated response 
+easier to verify.
 
 ---
 
@@ -52,6 +57,9 @@ in at least 4 of 5 tries.
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
+I chose 4 of 5 because the system should reliably reject questions 
+outside the campus_life corpus instead of allowing the model to answer 
+from outside knowledge.
 
 ---
 
