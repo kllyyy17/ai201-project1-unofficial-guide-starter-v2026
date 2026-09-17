@@ -21,6 +21,18 @@
 
 ## What This Does
 
+The Unofficial Guide is a retrieval-augmented generation (RAG) 
+question-answering system for campus life information. I used 
+the `campus_life` corpus, which contains short posts about topics 
+such as courses, housing, dining, and university policies.
+
+When a user asks a question, the system retrieves the most 
+relevant documents, checks whether the best match is relevant 
+enough using a distance cutoff, and then generates an answer 
+using only the retrieved information. If the question is 
+outside the corpus, the relevance gate rejects it instead 
+of asking the model to guess.
+
 <!-- Three or four sentences. Which corpus you picked, and the kinds of
      questions your system answers. Write it for someone who has never seen
      this repo.
@@ -175,9 +187,25 @@ out-of-scope distance.
 
      Milestone 5. -->
 
-**1.**
+I used ChatGPT to help me understand and implement parts of the RAG pipeline 
+while keeping the project simple enough for the `campus_life` corpus.
 
-**2.**
+**1. Chunking strategy:**  
+I asked ChatGPT to help me decide how to chunk the `campus_life` documents 
+after inspecting the starter chunker. It suggested using a 600-character 
+target and splitting longer documents at paragraph boundaries with no overlap. 
+I kept this approach because the corpus mostly contains short posts, 
+and my initial indexing results showed that the documents were already 
+averaging about 317 characters. I also checked the generated chunks 
+myself to make sure they were standalone and contained enough context.
+
+**2. Relevance cutoff:**
+I asked ChatGPT to help me determine whether the starter relevance 
+cutoff of `0.6` was appropriate. It helped me compare the best distances 
+from five in-corpus questions with five out-of-scope questions. 
+The in-corpus distances ranged from `0.137` to `0.278`, while the out-of-scope 
+distances ranged from `0.825` to `0.934`. Based on that evidence, 
+I kept the `0.6` cutoff rather than changing it.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
