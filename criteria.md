@@ -28,6 +28,7 @@ contains the answer.
 I chose 4 of 5 because retrieval is the foundation of this RAG pipeline, 
 and a relevant answer-containing chunk needs to be present before the model 
 can produce a grounded answer.
+
 ---
 
 ## 2. Every answer names a source
