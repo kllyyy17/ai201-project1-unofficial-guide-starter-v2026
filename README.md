@@ -367,11 +367,11 @@ answers.
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | All three runs retrieved an answer-containing result for 5 of 5 questions, exceeding the target of at least 4 of 5. |
+| 2 | Every answer names a source | MET | All 5 answers in each of the three runs named at least one source document, satisfying the requirement for every answer. |
+| 3 | Gate stops out-of-corpus questions | MET | The relevance gate refused all 5 out-of-scope questions, exceeding the target of at least 4 of 5. The gate is deterministic, so the same 5/5 result is recorded for all three runs. |
+| 4 | Answer-containing chunk has enough context | MET | All 5 test questions were answered correctly in each of the three runs using the retrieved context, exceeding the target of at least 4 of 5. |
+| 5 | Source document supports the answer | MET | The source documents named in all 5 answers supported the information used to answer the questions in each of the three runs, exceeding the target of at least 4 of 5. |
 
 ## Diagnoses
 
