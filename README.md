@@ -393,6 +393,14 @@ answers.
 
      Milestone 3. -->
 
+There were no misses across the three runs. All five criteria met their targets in
+every run.
+
+Because the system cleared every criterion on the first try, Criterion 1 appears to
+have been set conservatively. The original target was at least 4 of 5 questions with
+an answer-containing retrieved chunk, but the system achieved 5 of 5 in all three
+runs. I would tighten Criterion 1 to require 5 of 5 questions across all three runs.
+
 ## The Improvement
 
 **What I changed:**
