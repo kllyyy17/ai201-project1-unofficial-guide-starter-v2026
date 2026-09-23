@@ -234,15 +234,125 @@ I kept the `0.6` cutoff rather than changing it.
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Answer-containing chunk has enough context | 5/5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Source document supports the answer | 5/5 | 5/5 | 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+### Criterion 1 — Retrieved chunks contain the answer
+
+Evidence from `results\run_2026-09-23_1822_before.md`, produced by `run_eval.py::main`.
+
+**How many credit hours are required for graduation? — run 1**
+
+- Best distance: 0.2679 (passed the gate)
+- Sources retrieved: admin_graduation_requirements.txt, 
+admin_pass_fail_option.txt, course_stat_150.txt, 
+course_stat_150_workload.txt, money_jobs.txt
+
+```
+According to admin_graduation_requirements.txt, 120 credit hours 
+are required for graduation.
+```
+
+**What is the latest week a student can declare a course pass/fail? — run 1**
+
+- Best distance: 0.2276 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_declaring_a_major.txt, 
+admin_graduation_requirements.txt, admin_pass_fail_option.txt, course_cs_340.txt
+
+```
+A student can declare a course pass/fail as late as week eight. 
+
+Source: admin_pass_fail_option.txt
+```
+
+**How many hours per week should students expect to spend outside class for CS 210? — run 1**
+
+- Best distance: 0.2784 (passed the gate)
+- Sources retrieved: course_cs_210.txt, course_cs_210_workload.txt, 
+course_cs_340.txt, course_econ_101_workload.txt, course_stat_150_workload.txt
+
+```
+Students should expect to spend 8 to 10 hours a week outside class for CS 210 
+(Source: `course_cs_210_workload.txt` and `course_cs_210.txt`).
+```
+
+**What are the peak wait times at Pellew Dining Hall? — run 1**
+
+- Best distance: 0.1976 (passed the gate)
+- Sources retrieved: dining_halden_hall.txt, dining_halden_hall_followup.txt, 
+dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, 
+dining_the_ridgeway_cafe_followup.txt
+
+```
+The peak wait times at Pellew Dining Hall are 12 to 18 minutes 
+(from `dining_pellew_dining_hall.txt` and `dining_pellew_dining_hall_followup.txt`).
+```
+
+**How much does laundry cost to wash and dry at Fenwick Court? — run 1**
+
+- Best distance: 0.1371 (passed the gate)
+- Sources retrieved: housing_aldridge_hall_laundry.txt, 
+housing_calder_annexe_laundry.txt, housing_fenwick_court_laundry.txt, 
+housing_innisfree_hall_laundry.txt, housing_old_brewhouse_laundry.txt
+
+```
+At Fenwick Court, a wash costs $2.00 and a dry costs $1.75. 
+
+Source: housing_fenwick_court_laundry.txt
+```
+
+
+### Criterion 2 — Every answer names a source
+
+Evidence from the same Run 1 output in `results\run_2026-09-23_1822_before.md`, 
+produced by `run_eval.py::main`.
+
+The five generated answers above are the actual outputs for Run 1. Each
+answer includes at least one source document.
+
+
+### Criterion 3 — Gate stops out-of-corpus questions
+
+Evidence from `results/run_2026-09-23_1822_before.md`, produced by
+`run_eval.py::check_out_of_scope`.
+
+Produced by `run_eval.py::check_out_of_scope`, cutoff 0.6. Refused 5 of 5.
+
+| Out-of-scope question | Best distance | Gate |
+|---|---|---|
+| What is the capital of Mongolia? | 0.825 | refused |
+| How do I change the oil in a diesel engine? | 0.934 | refused |
+| Who won the 1994 World Cup? | 0.886 | refused |
+| What is the recommended dosage of ibuprofen for a headache? | 0.844 | refused |
+| How do I write a for loop in Rust? | 0.896 | refused |
+
+
+### Criterion 4 — Answer-containing chunk has enough context
+
+Evidence from the same Run 1 output in `results\run_2026-09-23_1822_before.md`, 
+produced by `run_eval.py::main`.
+
+The Run 1 output above shows the retrieved source documents and the generated
+answers. The answers were produced using the retrieved chunks for each
+question.
+
+
+### Criterion 5 — Source document supports the answer
+
+Evidence from the same Run 1 output in `results\run_2026-09-23_1822_before.md`, 
+produced by `run_eval.py::main`.
+
+The Run 1 output above shows the source documents named by the system for each
+answer. The named sources correspond to the information used in the generated
+answers.
+
 
 ## Verdicts
 
