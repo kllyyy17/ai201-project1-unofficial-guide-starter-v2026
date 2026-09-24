@@ -405,10 +405,18 @@ runs. I would tighten Criterion 1 to require 5 of 5 questions across all three r
 
 **What I changed:**
 
+I changed the chunk size in `chunker.py::split_documents` from 600 characters to
+400 characters while keeping the same paragraph-based chunking strategy and
+zero overlap.
+
 **Why I picked it:**
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
+I picked a smaller chunk size because Criterion 1 was set conservatively: the
+baseline achieved 5 of 5 in all three runs even though the target was only 4 of
+5. I wanted to test whether smaller chunks could improve retrieval while still
+preserving enough context to answer the questions.
 
 ### Run Log — After
 
@@ -417,11 +425,11 @@ runs. I would tighten Criterion 1 to require 5 of 5 questions across all three r
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | Every answer | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Answer-containing chunk has enough context | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Source document supports the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 **Did it help?**
 
@@ -431,6 +439,16 @@ runs. I would tighten Criterion 1 to require 5 of 5 questions across all three r
      tell.
 
      Milestone 4. -->
+The 400-character chunking strategy did not produce a measurable improvement on
+the test set. The baseline achieved 5 of 5 on all five criteria across three
+runs, and the 400-character strategy also achieved 5 of 5 on all five criteria
+across three runs.
+
+The change increased the number of chunks from 88 to 100 and reduced the
+average chunk size from about 317 to 278 characters, but the five test
+questions produced the same retrieval distances and the same criterion-level
+results. Based on this test set, the smaller chunk size did not improve the
+system's measured performance.
 
 ## What's Still Broken
 

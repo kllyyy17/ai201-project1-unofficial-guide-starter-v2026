@@ -108,7 +108,7 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
     chunks: list[Chunk] = []
 
     # Keep each post together unless it is longer than our target size.
-    chunk_size = 600
+    chunk_size = 400
 
     for doc in documents:
         # Short posts are already good standalone chunks.
