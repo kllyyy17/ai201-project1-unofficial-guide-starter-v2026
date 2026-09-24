@@ -207,6 +207,13 @@ The in-corpus distances ranged from `0.137` to `0.278`, while the out-of-scope
 distances ranged from `0.825` to `0.934`. Based on that evidence, 
 I kept the `0.6` cutoff rather than changing it.
 
+**3. Evaluation and debugging:** 
+I used ChatGPT to help review my retrieval results,
+think through whether the relevance cutoff was appropriate, and identify patterns
+in the evaluation results. I compared the retrieved distances for in-scope and
+out-of-scope questions and used those results to validate that the relevance gate
+was separating questions covered by the corpus from questions outside the corpus.
+
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
@@ -237,8 +244,8 @@ I kept the `0.6` cutoff rather than changing it.
 | 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
-| 4. Answer-containing chunk has enough context | 5/5 | 5/5 | 5/5 | 5/5 | MET |
-| 5. Source document supports the answer | 5/5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Answer-containing chunk has enough context | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Source document supports the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
@@ -426,7 +433,7 @@ preserving enough context to answer the questions.
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
 | 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
-| 2. Every answer names a source | 5 of 5 | Every answer | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 4. Answer-containing chunk has enough context | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 5. Source document supports the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
@@ -459,6 +466,24 @@ system's measured performance.
      not.
 
      Milestone 5. -->
+No criteria were missed after the improvement. The 400-character chunking strategy
+still achieved 5 of 5 on all five criteria across all three runs.
+
+However, the system still has limitations that my five criteria do not fully measure.
+The evaluation set contains only five in-scope questions, and the test questions are
+all directly answerable from the corpus. The smaller chunking strategy also did not
+change the retrieval distances for any of the five test questions.
+
+If I continued improving the system, I would expand the evaluation set with more
+questions that test similar topics in different wording, questions that require
+information from multiple chunks, and additional out-of-scope questions. I would
+also add an automated scorer so that criterion results do not have to be judged
+manually from the run output.
+
+I stopped here because the current test set already met all five criteria, and the
+Milestone 4 experiment did not show a measurable improvement from changing the
+chunk size. Further changes would need a stronger evaluation set to determine
+whether they actually improve the system rather than just changing its behavior.
 
 ## What I'd Do Differently
 
@@ -466,3 +491,13 @@ system's measured performance.
      differently, and why?
 
      Milestone 5. -->
+Knowing what I know now, I would write Criterion 1 more strictly in the next unit.
+I originally required an answer-containing retrieved chunk for at least 4 of 5
+questions, but the baseline achieved 5 of 5 in all three runs. I would instead
+require 5 of 5 questions to retrieve an answer-containing chunk across all three
+runs.
+
+I would also make the evaluation set larger and include questions that require
+information from multiple chunks. This would make the criteria more challenging
+and give me a better way to distinguish between retrieval strategies that both
+perform perfectly on a small test set.
